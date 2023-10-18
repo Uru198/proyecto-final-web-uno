@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero Electrónico</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+</head>
+<body>
+    <div class="container">
+        <h1>Cajero Electrónico</h1>
+        <h3>Registro</h3>
+        <form id="registroForm">
+            <label for="usuario">Nombre de usuario:</label>
+            <input class="campos" type="text" id="usuario" required name="usuario">
+            <label for="correo">Correo Electronico:</label>
+            <input class="campos" type="text" id="correo" required name="correo">
+            <label for="contrasena">Contraseña:</label>
+            <input class="campos" type="password" id="contrasena" required name="contrasena">
+            <button type="submit">Registrar</button>
+        </form>
+        <div id="registros">
+            
+
+        </div>
+        <hr>
+        <h3>Iniciar Sesion</h3>
+        <form id="inicioSesionForm">
+            <label for="usuario1">Nombre de usuario:</label>
+            <input type="text" id="usuario1" required name="usuario1">
+            <label for="contrasena1">Contraseña:</label>
+            <input type="password" id="contrasena1" required name="contrasena1">
+            <button type="submit">Iniciar Sesion</button>
+        </form>
+        
+        <div id="inicioSesion">
+
+        </div>
+        <hr>
+        <div>
+            <h1>Saldo Actual</h1>
+            <p id="saldoActual"> $ 0</p>
+        </div>
+        <hr>
+        <h3>Operacion</h3>
+        <form id="operacionForm">
+            <label for="operacion">Tipo de operación:</label>
+            <select id="operacion">
+                <option value="Deposito">Depósito</option>
+                <option value="Retiro">Retiro</option>
+                <option value="Transferencia">Transferir</option>
+            </select>
+            <label for="monto">Monto:</label>
+            <input type="number" id="monto" required>
+            <label for="numeroTransferencia">Numero de Transferencia: </label>
+            <input type="number" id="numeroTransferencia">
+            <button type="submit">Registrar operacion</button>
+        </form>
+        <hr>
+        
+        <div id="registroOperaciones">
+            <h2>Registro de Operaciones</h2>
+        </div>
+    </div>
+    
+
+    <script src="./assets/js/script.js"></script>
+</form>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Cajero Electrónico</title>
+</head>
+<body>
+    <h1>Cajero Electrónico</h1>
+    <form id="registroForm">
+        <label for="usuario">Nombre de usuario:</label>
+        <input class="campos" type="text" id="usuario" required name="usuario">
+        <label for="correo">Correo Electronico:</label>
+        <input class="campos" type="text" id="correo" required name="correo">
+        <label for="contrasena">Contraseña:</label>
+        <input class="campos" type="password" id="contrasena" required name="contrasena">
+        <button type="submit">Registrar</button>
+    </form>
+    <h3>Iniciar Sesion</h3>
+        <form id="inicioSesionForm">
+            <label for="usuario1">Nombre de usuario:</label>
+            <input type="text" id="usuario1" required name="usuario1">
+            <label for="contrasena1">Contraseña:</label>
+            <input type="password" id="contrasena1" required name="contrasena1">
+            <button type="submit">Iniciar Sesion</button>
+        </form>
+        <div>
+            <h1>Saldo Actual</h1>
+            <p id="saldoActual"> $ 0</p>
+        </div>
+    
+    <h2>Operaciones:</h2>
+    <button onclick="retirar()">Retirar</button>
+    <button onclick="consignar()">Consignar</button>
+    <button onclick="transferir()">Transferir</button>
+
+
+    <h2>Registro de Transacciones:</h2>
+    <ul id="registro"></ul>
+
+    <script>
+        let saldo = 100000;
+        const registro = document.getElementById("registro");
+        const saldoElement = document.getElementById("saldo");
+
+        function registrarTransaccion(transaccion) {
+            const li = document.createElement("li");
+            li.textContent = transaccion;
+            registro.appendChild(li);
+        }
+
+        function retirar() {
+            const cantidad = parseFloat(prompt("Ingrese la cantidad a retirar:"));
+            if (isNaN(cantidad) || cantidad <= 0 || cantidad > saldo) {
+                alert("Cantidad no válida o insuficiente saldo.");
+                return;
+            }
+            saldo -= cantidad;
+            saldoElement.textContent = saldo;
+            registrarTransaccion(`Retiro: -${cantidad} COP`);
+        }
+
+        function consignar() {
+            const cantidad = parseFloat(prompt("Ingrese la cantidad a consignar:"));
+            if (isNaN(cantidad) || cantidad <= 0) {
+                alert("Cantidad no válida.");
+                return;
+            }
+            saldo += cantidad;
+            saldoElement.textContent = saldo;
+            registrarTransaccion(`Consignación: +${cantidad} COP`);
+        }
+
+        
+    </script>
+</body>
+</html> -->
