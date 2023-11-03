@@ -3,146 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cajero Electrónico</title>
+    <title>Cesbank</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <link rel="shortcut icon" href="./assets/img/icon/logoCb.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
 </head>
 <body>
-    <div class="container">
-        <h1>Cajero Electrónico</h1>
-        <h3>Registro</h3>
-        <form id="registroForm">
-            <label for="usuario">Nombre de usuario:</label>
-            <input class="campos" type="text" id="usuario" required name="usuario">
-            <label for="correo">Correo Electronico:</label>
-            <input class="campos" type="text" id="correo" required name="correo">
-            <label for="contrasena">Contraseña:</label>
-            <input class="campos" type="password" id="contrasena" required name="contrasena">
-            <button type="submit">Registrar</button>
-        </form>
-        <div id="registros">
+    <img class="fondo" src="./assets/img/FondoAzul.jpg" alt="">
+    <img src="./assets/img/icon/logoCb.png" alt="" id="logoInicio">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id="registroForm">
+                <h1>Registrarse</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>o utilice su correo electrónico para registrarse</span>
+                <input type="text" class="campos"  placeholder="Nombre" id="usuario"  name="usuario"/>
+                <input type="email" class="campos" placeholder="Correo Electronico" id="correo"  name="correo"/>
+                <input type="password" class="campos" placeholder="Contraseña" id="contrasena"  name="contrasena"/>
+                <div id="registros">
+
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+       
+        </div>
+        <div class="form-container sign-in-container">
+            <form id="inicioSesionForm">
+                <h1>Iniciar Sesion</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>o utilice su cuenta</span>
+                <input type="text" placeholder="Nombre" id="usuario1" required name="usuario1"/>
+                <input type="password" placeholder="Contraseña" id="contrasena1" required name="contrasena1"/>
+                <a href="#">¿Olvido su contraseña?</a>
+                <div id="inicioSesion">
+
+                </div>
+                <button type="submit" id="btnIniciar" onclick="AgregarInformacion()" >Iniciar Sesion</button>
+            </form>
             
-
         </div>
-        <hr>
-        <h3>Iniciar Sesion</h3>
-        <form id="inicioSesionForm">
-            <label for="usuario1">Nombre de usuario:</label>
-            <input type="text" id="usuario1" required name="usuario1">
-            <label for="contrasena1">Contraseña:</label>
-            <input type="password" id="contrasena1" required name="contrasena1">
-            <button type="submit">Iniciar Sesion</button>
-        </form>
-        
-        <div id="inicioSesion">
-
-        </div>
-        <hr>
-        <div>
-            <h1>Saldo Actual</h1>
-            <p id="saldoActual"> $ 0</p>
-        </div>
-        <hr>
-        <h3>Operacion</h3>
-        <form id="operacionForm">
-            <label for="operacion">Tipo de operación:</label>
-            <select id="operacion">
-                <option value="Deposito">Depósito</option>
-                <option value="Retiro">Retiro</option>
-                <option value="Transferencia">Transferir</option>
-            </select>
-            <label for="monto">Monto:</label>
-            <input type="number" id="monto" required>
-            <label for="numeroTransferencia">Numero de Transferencia: </label>
-            <input type="number" id="numeroTransferencia">
-            <button type="submit">Registrar operacion</button>
-        </form>
-        <hr>
-        
-        <div id="registroOperaciones">
-            <h2>Registro de Operaciones</h2>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bienvenido!</h1>
+                    <p>Para mantenerte en contacto con nosotros, inicia sesión con tus datos personales</p>
+                    <button class="ghost" id="signIn">Iniciar Sesion</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hola, Usuario!</h1>
+                    <p>Introduzca sus datos personales y empiece a mirar su banco con nosotros</p>
+                    <button class="ghost" id="signUp">Registrarse</button>
+                </div>
+            </div>
         </div>
     </div>
-    
-
+    <div class="notification" id="bienvenide">
+        <div class="notification__body">
+            <img src="./assets/img/icon/check-circle.svg" alt="Success" class="notification__icon ">
+            Iniciando Sesion! &#128640; 
+        </div>
+        <div class="notification__progress"></div>
+    </div>
+    <div class="notification2" id="bienvenideRegistro">
+        <div class="notification__body">
+            Usuario Registrado! 
+        </div>
+    </div>
+    <div class="notification3" id="bienvenideRegistroIncorrecto">
+        <div class="notification__body">
+            <img src="./assets/img/icon/rechazado.png" alt="Success" class="notification__icon">
+            Ups, algo salio mal! 
+        </div>
+    </div>
+    <div class="notification4" id="bienvenideInicioSesionIncorrecto">
+        <div class="notification__body">
+            <img src="./assets/img/icon/rechazado.png" alt="Success" class="notification__icon">
+            Ups, algo salio mal! 
+        </div>
+    </div>
+    <div class="containerPrincipal" id="containerPrincipal">
+       <div class="card-hover">
+        <div class="card-hover__content">
+            <img src="./assets/img/icon/logoCb.png" alt="" id="logo">
+            <button class="card-hover__link">Tu cartera</button>
+            <img src="./assets/img/cerrarsesion.png" alt=""  id="cerrarSesion">
+        <h1 class="card-hover__title">
+            Hola, <span id="informacion" class="informacion"></span>
+        </h1>
+        </div>
+        <section id="container-Main-id" class="containerMain">
+            <div class="cardMain">
+                <div class="face face1">
+                    <div class="content">
+                        <img src="./assets/img/deposito.png" alt="">
+                    </div>
+                </div>
+                <div class="face face2">
+                    <div class="content">
+                        <p>Recuerda que el cajero automático acepta depósitos colocados dentro de un sobre.</p>
+                        <a id="depositar">Realizar acción</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cardMain">
+                <div class="face face1">
+                    <div class="content">
+                        <img src="./assets/img/retirar.png" alt="">
+                    </div>
+                </div>
+                <div class="face face2">
+                    <div class="content">
+                        <p>Hazlo mas facil y retira dinero para ese antojo.</p>
+                        <a href="#" id="retirar">Realizar acción</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cardMain">
+                <div class="face face1">
+                    <div class="content">
+                        <img src="./assets/img/transferir.png" alt="">
+                    </div>
+                </div>
+                <div class="face face2">
+                    <div class="content">
+                        <p>Ten a la mano el numero de cuenta a transferir.</p>
+                        <a href="#" id="transferir">Realizar acción</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cardMain">
+                <div class="face face1">
+                    <div class="content">
+                        <img src="./assets/img/historial.png" alt="">
+                    </div>
+                </div>
+                <div class="face face2">
+                    <div class="content">
+                        <p>Aqui podras ver tu historial de todos tus movimientos.</p>
+                        <a href="#" id="historial">Realizar acción</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="sectionHistorial">
+            <div class="info_box">
+                <img src="./assets/img/arrow.png" alt="flecha" id="logoflecha">
+                <div class="info-title">
+                    <div class="wrap">
+                        <div class="search">
+                           <input type="text" class="searchTerm" placeholder="Que quieres buscar?">
+                           <button type="submit" class="searchButton">
+                            <div class="i"> <i class="fa fa-search"></i></div>
+                          </button>
+                        </div>
+                     </div>
+                     
+                </div>
+                <div class="info-list">
+                    <div>
+                        <p style="margin-top: 0; padding: 0px 0px 0px 40px;font-weight: bold;  border-bottom: 1px solid lightgrey; margin: 0;">Movimientos</p>
+                        <div class="scroll-container" id="registroOperaciones">
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </section>
+        <section id="sectionDepositar">
+            <div class="info_box">
+                <img src="./assets/img/arrow.png" alt="flecha" id="logoflecha2">
+                <div class="info-title" style="border-bottom: 1px solid rgba(163, 163, 163, 0.658);">
+                    <h1>Depositos</h1>
+                </div>
+                <div class="info-list">
+                        <div class="scroll-container2">
+                            <form action="" class="formDeposito" id="operacionForm">
+                                <div class="labelCard">
+                                    <div style="opacity: 0; visibility: hidden;">
+                                       <label class="labelDeposito" for="operacion" >Tipo de operacion:</label>
+                                        <select id="operacion" class="inputDeposito input-password" >
+                                            <option value="Deposito">Depósito</option>
+                                        </select> 
+                                    </div>
+                                    <div>
+                                        <label for="name" class="labelDeposito" >Nombre</label>
+                                        <input type="text" id="name" placeholder="Nombre usuario" class="inputDeposito input-name">
+                                        <label for="cedula" class="labelDeposito">Cedula</label>
+                                        <input type="text" id="cedula" placeholder="115..." class="inputDeposito input-email">    
+                                    </div>
+                                    <div>
+                                    <label for="monto" class="labelDeposito" >Monto</label>
+                                    <input type="number" id="monto" placeholder="Monto" class="inputDeposito input-password" >
+                                    <label class="labelDeposito" style="padding-block: 5px;">Tipo de cuenta</label>
+                                    <select class="inputDeposito input-password">
+                                        <option value="Ahorros">Ahorros</option>
+                                        <option value="Corriente">Corriente</option>
+                                    </select> 
+                                    </div>
+                                </div>
+                                <button type="submit" value="Deposito" class="primary-button login-button">Depositar</button>
+                            </form>
+                        </div>
+                </div>
+            </div>    
+        </section>
+        <section id="sectionRetirar">
+            <div class="info_box">
+                <img src="./assets/img/arrow.png" alt="flecha" id="logoflecha3">
+                <div class="info-title" style="border-bottom: 1px solid rgba(163, 163, 163, 0.658);">
+                    <h1>Retiros</h1>
+                </div>
+                <div class="info-list">
+                        <div class="scroll-container3">
+                            <form action="" class="formRetiro" id="operacionRetirar">
+                                <div class="labelCard">
+                                    <div style="opacity: 0; visibility: hidden;">
+                                        <!-- Aqui -->
+                                       <label class="labelDeposito" for="operacion2" >Tipo de operacion:</label>
+                                        <select id="operacion2" class="inputDeposito input-password" >
+                                            <option value="Retirar">Retirar</option>
+                                        </select> 
+                                    </div>
+                                    <div>
+                                        <label for="name" class="labelDeposito" >Nombre</label>
+                                        <input type="text" id="name2" placeholder="Nombre usuario" class="inputDeposito input-name">
+                                        <label for="cedula" class="labelDeposito">Cedula</label>
+                                        <input type="text" id="cedula2" placeholder="11..." class="inputDeposito input-email">    
+                                    </div>
+                                    <div>
+                                    <label for="monto" class="labelDeposito" >Monto</label>
+                                    <input type="number" id="monto2" placeholder="Monto" class="inputDeposito input-password" >
+                                    <label class="labelDeposito" style="padding-block: 5px;">Tipo de cuenta</label>
+                                    <select class="inputDeposito input-password" id="tipocuenta2">
+                                        <option value="Ahorros">Ahorros</option>
+                                        <option value="Corriente">Corriente</option>
+                                    </select> 
+                                    </div>
+                                </div>
+                                <button type="submit" value="Retirar" class="primary-button login-button">Retirar</button>
+                            </form>
+                        </div>
+                </div>
+            </div>    
+        </section>
+        <section id="sectionTransferir">
+            <div class="info_box">
+                <img src="./assets/img/arrow.png" alt="flecha" id="logoflecha4">
+                <div class="info-title" style="border-bottom: 1px solid rgba(163, 163, 163, 0.658);">
+                    <h1>Transferencias</h1>
+                </div>
+                <div class="info-list">
+                        <div class="scroll-container4">
+                            <form action="" class="formRetiro" id="operacionTransferir">
+                                <div class="labelCard-transferencia">
+                                    <div style="opacity: 0; visibility: hidden; display: none;">
+                                       <label class="labelDeposito" for="operacion3" >Tipo de operacion:</label>
+                                        <select id="operacion3" class="inputDeposito input-password" >
+                                            <option value="Transferencia">Transferencia</option>
+                                        </select> 
+                                    </div>
+                                    <div>
+                                        <label for="name" class="labelDeposito" >Nombre</label>
+                                        <input type="text" id="name3" placeholder="Nombre usuario" class="inputDeposito input-name">
+                                        <label for="cedula" class="labelDeposito">Cedula</label>
+                                        <input type="text" id="cedula3" placeholder="11..." class="inputDeposito input-email">    
+                                    </div>
+                                    <div>
+                                    <label for="monto3" class="labelDeposito" >Monto</label>
+                                    <input type="number" id="monto3" placeholder="Monto" class="inputDeposito input-password" >
+                                    <label for="monto" class="labelDeposito" >Numero de cuenta</label>
+                                    <input type="text" id="numeroTransferencia" placeholder="Monto" class="inputDeposito input-password" >
+                                    </div>
+                                    <div>
+                                        <label for="Banco" class="labelDeposito" >Banco</label>
+                                        <input type="text" id="banco" placeholder="Nombre banco" class="inputDeposito input-password" >
+                                        <label class="labelDeposito" style="padding-block: 5px;">Tipo de cuenta</label>
+                                            <select class="inputDeposito input-password" id="tipocuenta3">
+                                                <option value="Ahorros">Ahorros</option>
+                                                <option value="Corriente">Corriente</option>
+                                            </select> 
+                                        </div>
+                                </div>
+                                <button type="submit" value="Retirar" class="primary-button login-button" onclick="AgregarInformacionfactura()">Transferir</button>
+                            </form>
+                        </div>
+                </div>
+            </div>    
+        </section>
+      
+        <div class="card-hover__extra">
+        <h2>Cuenta de ahorro <p>Ahorros 510-567326-00</p></h2>
+        <div>
+            <h3>Saldo disponible</h3>
+            <p id="saldoActual"> $ 0</p>
+        </div>
+        </div>
+        
+    </div>
+    </div>
+    </div>
+    <div class="factura animate__animated animate__bounceInRight" id="factura">
+        <div class="form-container-factura">
+            <form action="" class="form-factura">
+                <h1 class="title">Factura</h1> 
+                <div class="factura1">
+                    <label for="name" class="label">Nombre</label>
+                    <p class="value1" id="informacionname3"></p>
+                    <label for="informacioncedula3" class="label">Cedula</label>
+                    <p class="value1" id="informacioncedula3"></p>
+                    <label for="informacionmonto3" class="label">Monto</label>
+                    <p class="value1" id="informacionmonto3"></p>
+                    <label for="informacionnumeroTransferencia" class="label"># Transferencia</label>
+                    <p class="value1" id="informacionnumeroTransferencia"></p>
+                    <label for="informacionnumeroTransferencia" class="label">Banco</label>
+                    <p class="value1" id="informacionbanco"></p>
+                    <label for="informaciontipocuenta3" class="label">Tipo de cuenta</label>
+                    <p class="value1" id="informaciontipocuenta3"></p> 
+                </div>
+                <button class="botonFactura" id="cerrarFactura">Cerrar Factura</button>
+            </form>
+        </div>
+    </div>
     <script src="./assets/js/script.js"></script>
 </form>
 </body>
 </html>
 
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Cajero Electrónico</title>
-</head>
-<body>
-    <h1>Cajero Electrónico</h1>
-    <form id="registroForm">
-        <label for="usuario">Nombre de usuario:</label>
-        <input class="campos" type="text" id="usuario" required name="usuario">
-        <label for="correo">Correo Electronico:</label>
-        <input class="campos" type="text" id="correo" required name="correo">
-        <label for="contrasena">Contraseña:</label>
-        <input class="campos" type="password" id="contrasena" required name="contrasena">
-        <button type="submit">Registrar</button>
-    </form>
-    <h3>Iniciar Sesion</h3>
-        <form id="inicioSesionForm">
-            <label for="usuario1">Nombre de usuario:</label>
-            <input type="text" id="usuario1" required name="usuario1">
-            <label for="contrasena1">Contraseña:</label>
-            <input type="password" id="contrasena1" required name="contrasena1">
-            <button type="submit">Iniciar Sesion</button>
-        </form>
-        <div>
-            <h1>Saldo Actual</h1>
-            <p id="saldoActual"> $ 0</p>
-        </div>
-    
-    <h2>Operaciones:</h2>
-    <button onclick="retirar()">Retirar</button>
-    <button onclick="consignar()">Consignar</button>
-    <button onclick="transferir()">Transferir</button>
-
-
-    <h2>Registro de Transacciones:</h2>
-    <ul id="registro"></ul>
-
-    <script>
-        let saldo = 100000;
-        const registro = document.getElementById("registro");
-        const saldoElement = document.getElementById("saldo");
-
-        function registrarTransaccion(transaccion) {
-            const li = document.createElement("li");
-            li.textContent = transaccion;
-            registro.appendChild(li);
-        }
-
-        function retirar() {
-            const cantidad = parseFloat(prompt("Ingrese la cantidad a retirar:"));
-            if (isNaN(cantidad) || cantidad <= 0 || cantidad > saldo) {
-                alert("Cantidad no válida o insuficiente saldo.");
-                return;
-            }
-            saldo -= cantidad;
-            saldoElement.textContent = saldo;
-            registrarTransaccion(`Retiro: -${cantidad} COP`);
-        }
-
-        function consignar() {
-            const cantidad = parseFloat(prompt("Ingrese la cantidad a consignar:"));
-            if (isNaN(cantidad) || cantidad <= 0) {
-                alert("Cantidad no válida.");
-                return;
-            }
-            saldo += cantidad;
-            saldoElement.textContent = saldo;
-            registrarTransaccion(`Consignación: +${cantidad} COP`);
-        }
-
-        
-    </script>
-</body>
-</html> -->
